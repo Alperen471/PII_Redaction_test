@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.DS_Store
+
+# Large / generated
+data/pii_benchmark_merged_fixed.json
+data/raw/*
+!data/raw/.gitkeep
+results/raw/**/*.json
+results/metrics/**/*.json
+!results/**/.gitkeep
+results/*.csv

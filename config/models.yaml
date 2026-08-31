@@ -1,0 +1,103 @@
+<<<<<<< HEAD
+# Model configuration (plan v5 §23).
+# Thresholds are LOCKED before the run and never changed based on results
+# (plan v5 §23, §31). `labels` here is the SEMANTIC benchmark prompt
+# (person + location only, plan v5 §5.2); the System benchmark overrides it
+# from systems.yaml `semantic_labels`.
+=======
+# Central model configuration (plan v4 §16.7).
+# Thresholds are LOCKED before the run and reported with results (plan v4 §8.4.3).
+# The benchmark dataset must never be used to tune these values.
+>>>>>>> e59785055f5985db95f4735d0c15d37f3a6cdd53
+
+dataset:
+  path: data/pii_benchmark_merged_fixed.json
+  format: json
+  expected_samples: 1000
+  id_range: ["PII-0000", "PII-0999"]
+
+run:
+  warmup_runs: 10
+<<<<<<< HEAD
+
+# Semantic NER benchmark (plan v5 §2.1, §5)
+semantic_labels:
+  - PERSON
+  - LOCATION
+
+semantic_models: [stanza, berturk, gliner_tr, gliner_edge, gliner_stream]
+=======
+  # test order per plan v4 §18
+  order: [regex, stanza, berturk, gliner_tr, gliner_edge, gliner_stream]
+>>>>>>> e59785055f5985db95f4735d0c15d37f3a6cdd53
+
+models:
+
+  regex:
+    adapter: regex
+    device: cpu
+    patterns_path: config/patterns.yaml
+
+  stanza:
+    adapter: stanza
+    device: cuda
+    lang: tr
+    download: true
+
+  berturk:
+    adapter: berturk
+    device: cuda
+    model_name: savasy/bert-base-turkish-ner-cased
+    aggregation_strategy: simple
+
+  gliner_tr:
+    adapter: gliner_tr
+    device: cuda
+    model_name: omeryentur/gliner-pam-pii-large
+    threshold: 0.5
+    threshold_locked: true
+    threshold_source: model_card_default
+<<<<<<< HEAD
+    labels: [person, location]
+=======
+    labels: &gliner_labels
+      - person
+      - location
+      - address
+      - phone number
+      - email
+      - national id
+      - bank account
+      - credit card
+      - customer id
+      - policy id
+      - claim id
+      - vehicle plate
+      - date of birth
+>>>>>>> e59785055f5985db95f4735d0c15d37f3a6cdd53
+
+  gliner_edge:
+    adapter: gliner_edge
+    device: cuda
+    model_name: knowledgator/gliner-pii-edge-v1.0
+    threshold: 0.5
+    threshold_locked: true
+    threshold_source: model_default
+<<<<<<< HEAD
+    labels: [person, location]
+=======
+    labels: *gliner_labels
+>>>>>>> e59785055f5985db95f4735d0c15d37f3a6cdd53
+
+  gliner_stream:
+    adapter: gliner_stream
+    device: cuda
+    model_name: knowledgator/gliner-stream-pii-v1.0
+    threshold: 0.5
+    threshold_locked: true
+    threshold_source: model_default
+<<<<<<< HEAD
+    labels: [person, location]
+=======
+    labels: *gliner_labels
+>>>>>>> e59785055f5985db95f4735d0c15d37f3a6cdd53

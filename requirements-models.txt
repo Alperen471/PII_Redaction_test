@@ -1,0 +1,9 @@
+# Heavy model dependencies -- install ONLY on the CUDA benchmark machine
+# (plan v4 §5, §14). The harness code is identical; adapters import these lazily.
+# Pin exact versions before the benchmark run and report them with results.
+-r requirements.txt
+
+torch
+transformers>=4.40
+gliner>=0.2.13
+stanza>=1.8

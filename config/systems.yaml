@@ -1,0 +1,51 @@
+# System-Level PII benchmark configuration (plan v5 §24, §6).
+# Structured labels -> regex; semantic labels -> a GLiNER variant (or none).
+# A system that has no detector for a label scores every such gold entity as FN
+# (plan v5 §7) -- that is the intended "system coverage" measurement.
+
+structured_labels:
+  - TCKN
+  - PHONE
+  - EMAIL
+  - IBAN
+  - CREDIT_CARD
+  - CUSTOMER_ID
+  - POLICY_ID
+  - CLAIM_ID
+  - VEHICLE_PLATE
+  - DATE_OF_BIRTH
+
+# plan v5 §6.2 SEMANTIC_SYSTEM_LABELS -- GLiNER is authoritative for these.
+semantic_labels:
+  - PERSON
+  - LOCATION
+  - ADDRESS
+
+# Structured labels regex cannot reliably express -> GLiNER also gets these in
+# its prompt and gap-fills wherever regex produced no span (label-domain-priority
+# merge; regex still wins any overlap). Excludes the labels regex nails
+# deterministically: TCKN / PHONE / EMAIL / IBAN / CREDIT_CARD.
+semantic_gap_labels:
+  - CUSTOMER_ID
+  - POLICY_ID
+  - CLAIM_ID
+  - VEHICLE_PLATE
+  - DATE_OF_BIRTH
+
+systems:
+
+  regex_only:
+    structured_adapter: regex
+    semantic_adapter: null
+
+  regex_gliner_tr:
+    structured_adapter: regex
+    semantic_adapter: gliner_tr
+
+  regex_gliner_edge:
+    structured_adapter: regex
+    semantic_adapter: gliner_edge
+
+  regex_gliner_stream:
+    structured_adapter: regex
+    semantic_adapter: gliner_stream

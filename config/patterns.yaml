@@ -1,0 +1,106 @@
+# Regex + Validator baseline patterns (plan v4 §5.1).
+#
+# PROVENANCE RULE: patterns are authored from PII-type *specifications*
+# (TCKN checksum, TR IBAN / ISO 13616 mod-97, Luhn, TR plate format, RFC-ish
+# e-mail) and common Turkish formatting conventions -- NOT reverse-engineered
+# from the benchmark records. The benchmark set must not be used for pattern
+# tuning (plan v4 §8.4.3).
+#
+# Institution-specific identifiers (CUSTOMER_ID / POLICY_ID / CLAIM_ID) are
+# disabled by default: they need a documented format spec. Enable and fill
+# `regex` once that spec is provided, then record the source alongside results.
+
+tckn:
+  enabled: true
+  regex: '(?<!\d)[1-9][0-9]{10}(?!\d)'
+  validator: tckn_checksum
+  score: 1.0
+
+phone:
+  enabled: true
+  regex: '(?<![\w+])(?:\+90[ .\-]?|0)(?:\(?\d{3}\)?[ .\-]?)\d{3}[ .\-]?\d{2}[ .\-]?\d{2}(?!\d)'
+  validator: tr_phone
+  score: 1.0
+
+email:
+  enabled: true
+  regex: '(?<![\w.+\-])[A-Za-z0-9._%+\-]+@[A-Za-z0-9](?:[A-Za-z0-9\-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9\-]*[A-Za-z0-9])?)+'
+  validator: none
+  score: 1.0
+
+iban:
+  enabled: true
+  regex: '(?<![A-Z0-9])TR\d{2}(?:[ ]?[0-9A-Z]{4}){5}[ ]?[0-9A-Z]{2}(?![0-9A-Z])'
+  validator: iban_mod97
+  score: 1.0
+
+credit_card:
+  enabled: true
+  regex: '(?<![\d\-])(?:\d[ \-]?){12,18}\d(?![\d\-])'
+  validator: luhn
+  min_digits: 13
+  max_digits: 19
+  score: 1.0
+
+vehicle_plate:
+  enabled: true
+  regex: '(?<!\w)(?:0[1-9]|[1-7]\d|8[01])\s?[A-PR-VYZ]{1,3}\s?\d{2,5}(?!\w)'
+  validator: none
+  score: 1.0
+
+date_of_birth:
+  enabled: true
+  require_context: true
+  context_window: 40
+  context_keywords:
+    - "doğum"
+    - "dogum"
+    - "d.t."
+    - "d. tarihi"
+    - "doğ."
+    - "DOB"
+    - "born"
+    - "birth"
+  regex: '(?<!\d)(?:\d{1,2}[./\-]\d{1,2}[./\-]\d{2,4}|\d{4}-\d{2}-\d{2}|\d{1,2}\s+(?:Ocak|Şubat|Subat|Mart|Nisan|Mayıs|Mayis|Haziran|Temmuz|Ağustos|Agustos|Eylül|Eylul|Ekim|Kasım|Kasim|Aralık|Aralik)\s+\d{4})(?!\d)'
+  score: 1.0
+
+<<<<<<< HEAD
+# Institution identifier schemes. Formats were observed STRUCTURALLY in the
+# dataset (literal prefix + fixed digit-group layout) and encoded here; they are
+# NOT metric-tuned against the benchmark (plan v5 §30). Spelled-out / STT-like
+# variants ("cust tire bes dort ...") are out of regex scope by design.
+#   CUSTOMER_ID : CUST-###### | MUS-######
+#   POLICY_ID   : POL-####-######
+#   CLAIM_ID    : HSR-####-##### | HSR-######
+customer_id:
+  enabled: true
+  regex: '(?i)(?<![\w-])(?:CUST|MUS)-\d{6}(?![\w-])'
+=======
+customer_id:
+  enabled: false
+  regex: ''
+>>>>>>> e59785055f5985db95f4735d0c15d37f3a6cdd53
+  validator: none
+  score: 1.0
+
+policy_id:
+<<<<<<< HEAD
+  enabled: true
+  regex: '(?i)(?<![\w-])POL-\d{4}-\d{6}(?![\w-])'
+=======
+  enabled: false
+  regex: ''
+>>>>>>> e59785055f5985db95f4735d0c15d37f3a6cdd53
+  validator: none
+  score: 1.0
+
+claim_id:
+<<<<<<< HEAD
+  enabled: true
+  regex: '(?i)(?<![\w-])HSR-(?:\d{4}-\d{5}|\d{6})(?![\w-])'
+=======
+  enabled: false
+  regex: ''
+>>>>>>> e59785055f5985db95f4735d0c15d37f3a6cdd53
+  validator: none
+  score: 1.0

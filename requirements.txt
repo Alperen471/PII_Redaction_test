@@ -1,0 +1,6 @@
+# Core benchmark harness (evaluation + regex baseline + scripts + tests).
+# Pure-Python; runs on CPU with no model downloads and no internet.
+# Pin exactly when you freeze a benchmark run (plan v4 §16.8).
+PyYAML>=6.0
+psutil>=5.9
+pytest>=8.0

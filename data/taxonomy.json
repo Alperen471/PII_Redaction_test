@@ -1,0 +1,142 @@
+{
+  "_comment": "Common label dictionary for the benchmark (plan v4 §16.1). Model outputs are normalized to canonical_labels before scoring. Labels not in evaluation_labels are kept in raw output but excluded from the primary metric (plan v4 §8.4.1).",
+  "canonical_labels": [
+    "ADDRESS",
+    "CLAIM_ID",
+    "CREDIT_CARD",
+    "CUSTOMER_ID",
+    "DATE_OF_BIRTH",
+    "EMAIL",
+    "IBAN",
+    "LOCATION",
+    "PERSON",
+    "PHONE",
+    "POLICY_ID",
+    "TCKN",
+    "VEHICLE_PLATE"
+  ],
+  "evaluation_labels": [
+    "ADDRESS",
+    "CLAIM_ID",
+    "CREDIT_CARD",
+    "CUSTOMER_ID",
+    "DATE_OF_BIRTH",
+    "EMAIL",
+    "IBAN",
+    "LOCATION",
+    "PERSON",
+    "PHONE",
+    "POLICY_ID",
+    "TCKN",
+    "VEHICLE_PLATE"
+  ],
+  "out_of_scope_labels": [
+    "ORGANIZATION"
+  ],
+  "low_support_threshold": 30,
+  "aliases": {
+    "per": "PERSON",
+    "person": "PERSON",
+    "person_name": "PERSON",
+    "personname": "PERSON",
+    "name": "PERSON",
+    "full name": "PERSON",
+    "pers": "PERSON",
+
+    "loc": "LOCATION",
+    "location": "LOCATION",
+    "gpe": "LOCATION",
+    "city": "LOCATION",
+    "place": "LOCATION",
+
+    "org": "ORGANIZATION",
+    "organization": "ORGANIZATION",
+    "organisation": "ORGANIZATION",
+    "company": "ORGANIZATION",
+
+    "address": "ADDRESS",
+    "postal address": "ADDRESS",
+    "street address": "ADDRESS",
+    "full address": "ADDRESS",
+
+    "tckn": "TCKN",
+    "tc": "TCKN",
+    "tc kimlik no": "TCKN",
+<<<<<<< HEAD
+    "tc kimlik numarası": "TCKN",
+    "tc no": "TCKN",
+    "tr national id (tckn)": "TCKN",
+    "turkish national identity number (tckn)": "TCKN",
+    "turkish national id number": "TCKN",
+    "tr_national_id": "TCKN",
+=======
+    "tc no": "TCKN",
+    "national id": "TCKN",
+    "national identification number": "TCKN",
+    "identity number": "TCKN",
+>>>>>>> e59785055f5985db95f4735d0c15d37f3a6cdd53
+
+    "phone": "PHONE",
+    "phone number": "PHONE",
+    "telephone": "PHONE",
+    "telephone number": "PHONE",
+    "mobile": "PHONE",
+    "mobile phone": "PHONE",
+    "gsm": "PHONE",
+
+    "email": "EMAIL",
+    "e-mail": "EMAIL",
+    "email address": "EMAIL",
+    "e-mail address": "EMAIL",
+    "mail": "EMAIL",
+
+    "iban": "IBAN",
+<<<<<<< HEAD
+    "tr iban": "IBAN",
+    "turkish iban": "IBAN",
+=======
+    "bank account": "IBAN",
+    "bank account number": "IBAN",
+    "account number": "IBAN",
+>>>>>>> e59785055f5985db95f4735d0c15d37f3a6cdd53
+
+    "credit card": "CREDIT_CARD",
+    "credit card number": "CREDIT_CARD",
+    "card number": "CREDIT_CARD",
+    "creditcard": "CREDIT_CARD",
+
+    "customer id": "CUSTOMER_ID",
+    "customer number": "CUSTOMER_ID",
+    "customer no": "CUSTOMER_ID",
+    "client id": "CUSTOMER_ID",
+
+    "policy id": "POLICY_ID",
+    "policy number": "POLICY_ID",
+    "policy no": "POLICY_ID",
+    "insurance policy number": "POLICY_ID",
+
+    "claim id": "CLAIM_ID",
+    "claim number": "CLAIM_ID",
+    "claim no": "CLAIM_ID",
+<<<<<<< HEAD
+    "insurance claim number": "CLAIM_ID",
+
+    "vehicle plate": "VEHICLE_PLATE",
+    "vehicle license plate": "VEHICLE_PLATE",
+    "vehicle licence plate": "VEHICLE_PLATE",
+=======
+
+    "vehicle plate": "VEHICLE_PLATE",
+>>>>>>> e59785055f5985db95f4735d0c15d37f3a6cdd53
+    "license plate": "VEHICLE_PLATE",
+    "licence plate": "VEHICLE_PLATE",
+    "plate": "VEHICLE_PLATE",
+    "plate number": "VEHICLE_PLATE",
+    "car plate": "VEHICLE_PLATE",
+
+    "date of birth": "DATE_OF_BIRTH",
+    "dob": "DATE_OF_BIRTH",
+    "birth date": "DATE_OF_BIRTH",
+    "birthdate": "DATE_OF_BIRTH"
+  }
+}
